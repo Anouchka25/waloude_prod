@@ -1,0 +1,15 @@
+#index:
+#    path: /
+#    controller: App\Controller\DefaultController::index
+
+# redirecting the homepage
+# config/routes.yaml
+
+# load some routes - one should ultimately have the path "/app"
+#controllers:
+#    resource: ../src/Controller/
+#    type:     annotation
+#    prefix:   /app
+
+# redirecting the homepage
+

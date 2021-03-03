@@ -1,0 +1,48 @@
+<nav class="navbar" role="navigation" aria-label="main navigation">
+  <div class="navbar-brand">
+      <a href="{{ path('accueil')}}">
+      <img class="navbar-item" src="{{ asset('./fichiers/logo.png') }}" width="300" height="100">
+      </a>
+
+    <span class="navbar-burger burger" data-target="navbarMenu">
+      <span ></span>
+      <span ></span>
+      <span ></span>
+    </a>
+  </div>
+
+  <div id="navbarMenu" class="navbar-menu">
+    <div class="navbar-start">
+	
+     <a class="navbar-item" href="{{ path('accueil')}}">Accueil</a>
+				<a class="navbar-item" href="{{ path('waloude')}}">Waloude</a>
+				<a class="navbar-item" href="{{ path('souscripteur_new')}}">Prévoyance</a>
+        <a class="navbar-item" href="{{ path('team')}}">Nos ambassadeurs</a>
+        <a class="navbar-item" href="{{ path('faq_index')}}">FAQ</a>
+				<a class="navbar-item" href="{{ path('contact')}}">Contactez-nous</a>
+    </div>
+
+    <div class="navbar-end">
+     
+      <div class="navbar-item">
+      {% if not app.user %}
+        <div class="buttons">
+          <a class="button is-primary" href="{{ path('user_registration')}}">
+            <strong>S'inscrire</strong>
+          </a>
+          <a class="button is-light" href="{{ path('app_login')}}">
+            Espace personnel
+          </a>
+        </div>
+        {% else %}
+        <div class="buttons">
+          <a class="button is-success" href="{{ path('souscripteur_index')}}">
+            Mon compte
+          </a>
+        </div>
+         {% endif %}
+
+      </div>
+    </div>
+  </div>
+</nav>

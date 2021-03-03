@@ -1,0 +1,32 @@
+     <style>
+         souscripteur[situationfamiliale]{ margin-left: -20px; box-sizing: border-box;}
+     </style>
+     
+      {#{% import "souscripteur/modele_conjoint.html.twig" as formModelConjoint %}#}
+
+      <div class="columns">
+        <div class="column is-2"><label class="label">{{ form_label(form.situationfamiliale) }}<span style="color:red">*</span></label></div>
+         <div class="column is-10">
+            <div class="control">
+              {{ form_widget(form.situationfamiliale) }}
+            </div>
+            
+            {#<div id="block_conjoint_1" data-prototype="{{ formModelConjoint.conjointCollectionElt(form.conjoint.vars.prototype)|e }}"></div>
+            {% do form.conjoint.setRendered %}#}
+            {#</div>#}
+
+            <small>{{ form_help(form.situationfamiliale) }}</small>
+            <div class="form-error">
+              {{ form_errors(form.situationfamiliale) }}
+            </div>
+
+        </div>
+        </div>
+          
+
+          <div id="block_conjoint" class="box" >
+          {{ form_widget(form.conjoint) }}
+          </div> 
+ 
+
+      

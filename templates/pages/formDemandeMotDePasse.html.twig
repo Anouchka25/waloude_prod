@@ -1,0 +1,33 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}WALOUDE - Demande mot de passe{% endblock %}
+
+{% block body %}
+  {# <h1 style="text-align:center; font-size:29px;color:#5271ff;font-weight: 700;line-height:1em; margin-bottom: 20px;">Contactez-nous</h1>
+    #}
+  <section style=" height:200px; background-image: url(../fichiers/imgcontact.png); background-repeat: no-repeat !important;">
+    <h1 style="padding-left:20px; padding-top:70px; font-size:29px; color:black; font-weight:bold;">Demandez un nouveau mot de passe</h1>
+  </section>
+  {% include 'trait.html.twig' %}
+  <section style="margin-top:20px; margin-bottom:20px">
+    <div class="container">
+      <div class="columns">
+        <div class="column box is-half is-offset-one-quarter">
+          <h1 class="title">Demandez un nouveau mot de passe </h1>
+          <form id="form" method="POST" action="/form-data/formdata3.php">
+              <label class="label">Votre Email lors de votre inscription</label>
+              <div class="control">
+                <input name="email" value="" class="input is-medium requis" type="email">
+                </dv>
+                  <br><br>
+                <div class="control">
+                  <button type="submit" class="button is-link is-fullwidth has-text-weight-medium is-medium">Envoyez</button>
+                </div>
+              </div>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </section>
+{% endblock %}

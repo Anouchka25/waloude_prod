@@ -1,0 +1,124 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Mon compte{% endblock %}
+
+{% block body %}
+
+{% for souscripteur in souscript %}
+
+<div class="box">
+          <article class="media">
+              <div class="media-left">
+              {% if souscripteur.user.photoUser.photo is defined  %}
+               <figure class="image is-128x128">
+                  <img src="{{ asset('uploads/team/' ~ souscripteur.user.photoUser.photo) }}" alt="{{ souscripteur.nom }} {{ souscripteur.prenom }}" title="{{ souscripteur.nom }} {{ souscripteur.prenom }}" >
+                </figure>
+                <a href="{{ path('photo_user_index')}}">Supprimer la photo</a>
+                 {% else %}
+                <figure class="image is-128x128">
+                      <img src="{{ asset('uploads/team/128x128.png') }}" width="128px" height="128px" alt="{{ souscripteur.nom }} {{ souscripteur.prenom }}" title="{{ souscripteur.nom }} {{ souscripteur.prenom }}" >
+                  
+                </figure>
+                <a href="{{ path('photo_user_new')}}">Ajouter la photo</a>
+                {% endif %}
+              </div>
+              
+              <div class="media-content">
+                <div class="content">
+                  <p>
+                    <strong>{{ souscripteur.nom }} {{ souscripteur.prenom }}</strong> 
+                    <br>
+                      Profession: {{ souscripteur.profession }}<br>
+                      Téléphone: {{ souscripteur.telephone }}<br>
+                      Téléphone domicile: {{ souscripteur.teldomicile }}<br>
+                      Email:  {{ souscripteur.user.email }}<br>
+                      Adresse: {{ souscripteur.adresse }}<br>
+                      Ville: {{ souscripteur.villeresidence }}<br>
+                      Code postal: {{ souscripteur.codepostal }}   <br> 
+                      Pays: {{ souscripteur.paysresidence|country_name('fr') }}<br> 
+                  </p>
+                  <p>
+                  <a class="button is-primary" href="{{ path('souscripteur_edit', {'id': souscripteur.id})}}">Modifier vos informations</a>
+                  <a class="button is-success" href="{{ path('souscripteurpdf', {'id': souscripteur.id})}}" target="_blank">Télécharger votre contrat</a>
+
+
+                  </p>
+                </div>
+              </div>
+              
+
+          </article>
+        </div>
+
+    <table class="table box">
+  <thead>
+    <tr>
+      <th>Assurés</th>
+      <th>Nom</th>
+      <th>Prénom</th>
+      <th>Date de naissance</th>
+      <th>Affiliation</th>
+    </tr>
+  </thead>
+
+  <tbody>
+  
+  {% if souscripteur.nombrebeneficiaires > 0  %}
+      {% for benef in souscripteur.beneficiaires %}
+  <tr>
+      <th> 1</th>
+      <th>{{ benef.nom }}</th>
+      <th>{{ benef.prenom }}</th>
+      <th>{{ benef.datenaissance|date('d-m-Y') }}</th>
+      <th>Bénéficiaire</th>
+      </tr>
+    {% endfor %}
+       {% else %}
+         Rien
+        {% endif %}
+
+   {% if souscripteur.conjoint=="marie" 
+  or souscripteur.conjoint =="pasce" 
+  or souscripteur.conjoint =="concubin"  %}
+  <tr>
+      <th> 1</th>
+      <th>{{ souscripteur.conjoint.nom }}</th>
+      <th>{{ souscripteur.conjoint.prenom }}</th>
+      <th>{{ souscripteur.conjoint.datenaissance|date('d-m-Y') }}</th>
+      <th>Conjoint(e)</th>
+      </tr>
+     {% endif %}
+
+     {% for enf in souscripteur.enfants %}
+      <tr>
+      <th>1</th>
+      <th>{{ enf.nom }}</th>
+      <th>{{ enf.prenom }}</th>
+      <th>{{ enf.datenaissance|date('d-m-Y') }} </th>
+      <th>Enfant</th>
+      </tr>
+      {% endfor %}
+  </tbody>
+   </table> 
+
+   {% else %}
+
+   <d class="container">
+   
+   <div class="columns ">
+     <div class="column is-full has-text-centered">
+    <h2 class="subtitle">Vous n'avez pas encore souscrit au contrat Waloude Prévoyance Décès</h2>
+     </div>
+     </div>
+
+     <div class="columns">
+     <div class="column is-full has-text-centered">
+    <h1 class="title"><a href="{{ path('souscripteur_new') }}"> Cliquez ici sans tarder pour vous inscrire </a></h1>
+     </div>
+     </div>
+<br/><br/>
+     </div>
+       
+    {% endfor %}
+    
+{% endblock %}

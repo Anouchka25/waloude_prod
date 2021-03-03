@@ -1,0 +1,78 @@
+<p>Votre pièce d'identité(recto) <span style="color:red">*</span></p>
+    {{ form_widget(form.cartRecto1, {
+           'attr': {
+           'class':  
+            'input', 
+             }
+          }) 
+            }}
+<small>{{ form_help(form.cartRecto1) }}</small>
+<div class="form-error">
+   {{ form_errors(form.cartRecto1) }}
+</div>
+<br/>
+      <p>Votre pièce d'identité(verso) <span style="color:red">*</span></p>
+    {{ form_widget(form.cartVerso1, {
+           'attr': {
+           'class':  
+            'input', 
+             }
+          }) 
+            }}
+<small>{{ form_help(form.cartVerso1) }}</small>
+<div class="form-error">
+   {{ form_errors(form.cartVerso1) }}
+</div>
+<br/>
+      <p>Pièce d'identité(verso) de votre conjoint(e)</p>
+                {{ form_widget(form.cartRecto2, {
+           'attr': {
+           'class':  
+            'input', 
+             }
+          }) 
+            }}
+            <small>{{ form_help(form.cartRecto2) }}</small>
+          <div class="form-error">
+            {{ form_errors(form.cartRecto2) }}
+          </div>
+<br/>
+      <p>Pièce d'identité(verso) de votre conjoint(e)</p>
+                {{ form_widget(form.cartVerso2, {
+           'attr': {
+           'class':  
+            'input', 
+             }
+          }) 
+            }}
+            <small>{{ form_help(form.cartVerso2) }}</small>
+          <div class="form-error">
+            {{ form_errors(form.cartVerso2) }}
+          </div>
+<br/>
+      <p>Composition du ménage <span style="color:red">*</span></p>
+                {{ form_widget(form.compoMenage, {
+           'attr': {
+           'class':  
+            'input', 
+             }
+          }) 
+            }}
+            <small>{{ form_help(form.compoMenage) }}</small>
+          <div class="form-error">
+            {{ form_errors(form.compoMenage) }}
+          </div>
+<br/>
+      <p>Autre document- "facultatif"</p>
+                {{ form_widget(form.autreDoc, {
+           'attr': {
+           'class':  
+            'input', 
+             }
+          }) 
+            }}
+            <small>{{ form_help(form.autreDoc) }}</small>
+          <div class="form-error">
+            {{ form_errors(form.autreDoc) }}
+          </div>
+

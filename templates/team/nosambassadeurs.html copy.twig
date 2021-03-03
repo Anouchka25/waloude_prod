@@ -1,0 +1,68 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Contactez-nous{% endblock %}
+
+{% block body %}
+    <h1 style="text-align:center; font-size:29px;color:#5271ff;font-weight: 700;line-height:1em; margin-bottom: 20px;">Nos ambassadeurs</h1>
+
+<section >
+  <div class="container">
+    <div class="columns">
+    <div class="column">
+    <form action="" method="post">
+    <div class="field">
+  <div class="control">
+    <div class="select is-large">
+      <select name="selectRegion">
+        <option>Selectionnez la Région</option>
+         {% for team in teams %}
+        <option>{{ team.region }}<br></option>
+        {% else %}
+           <option>no records found</option>
+        {% endfor %}
+      </select>
+    </div>
+  </div>
+</div>
+</form>
+</div>
+       {# Debut du bloc #}
+       {% if(isset($_POST['selectRegion'])) %}
+      <div class="column">
+        <div class="box">
+          <article class="media">
+              <div class="media-left">
+                <figure class="image is-128x128">
+                  <img src="{{ asset('uploads/team/' ~ team.photo) }}" alt="{{ team.nom }} {{ team.prenom }}" title="{{ team.nom }} {{ team.prenom }}" >
+                </figure>
+              </div>
+              <div class="media-content">
+                <div class="content">
+                  <p>
+                    <strong>{{ team.nom }} {{ team.prenom }}</strong> 
+                    <br>
+                      Téléphone: <a href="tel:{{ team.telephone }}"> {{ team.telephone }} </a><br>
+                      Email: <a href="mailto:{{ team.email }}"> {{ team.email }} </a> <br>
+                      Pays: {{ team.pays }}<br>
+                      Région: {{ team.region }}<br>
+                      Ville: {{ team.ville }}<br>
+                      Code postal: {{ team.codePostal }}   <br>  
+                  </p>
+                </div>
+              </div>
+          </article>
+        </div>
+      </div>
+      {% else %}
+           <p> no records found</p>
+        {% endfor %}
+
+        
+        {# Fin du bloc #}
+       </div>
+       </div>    
+
+</section>
+
+    
+{% endblock %}

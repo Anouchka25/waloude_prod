@@ -1,0 +1,43 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Contactez-nous{% endblock %}
+
+{% block body %}
+  {# <h1 style="text-align:center; font-size:29px;color:#5271ff;font-weight: 700;line-height:1em; margin-bottom: 20px;">Contactez-nous</h1>
+    #}
+  <section style=" height:200px; background-image: url(../fichiers/imgcontact.png); background-repeat: no-repeat !important;">
+    <h1 style="padding-left:20px; padding-top:70px; font-size:29px; color:black; font-weight:bold;">Contactez-nous</h1>
+  </section>
+  {% include 'trait.html.twig' %}
+  <section style="margin-top:20px; margin-bottom:20px">
+    <div class="container">
+      <div class="columns">
+        <div class="column box is-half is-offset-one-quarter">
+          <h1 class="title">Formulaire de contact </h1>
+          <form id="form" method="POST" action="/form-data/formdata2.php">
+            <label class="label">Nom et prénom</label>
+            <div class="control">
+              <input  name="nom_prenom" value="" class="input is-medium requis" type="text">
+              </dv>
+              <label class="label">Email</label>
+              <div class="control">
+                <input name="email" value="" class="input is-medium requis" type="email">
+                </dv>
+
+
+                <label class="label">Message</label>
+                <div class="control">
+                  <textarea class="textarea" rows="10" name="message"> </textarea>
+                </div>
+
+                <div class="control">
+                  <button type="submit" class="button is-link is-fullwidth has-text-weight-medium is-medium">Envoyez votre Message</button>
+                </div>
+              </div>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </section>
+{% endblock %}

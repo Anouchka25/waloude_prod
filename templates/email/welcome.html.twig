@@ -1,0 +1,122 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <title>{{ email.subject }}</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            background-color: #f3f3f3;
+            font-family: Helvetica, Arial, sans-serif;
+        }
+        h1 {
+            background-color: #264459;
+            color: #ffffff;
+            padding: 30px 0 50px 0;
+            font-weight: normal;
+        }
+        hr {
+            border: none;
+            border-top: 3px solid #264459;
+            margin: 20px;
+        }
+        .container {
+            background-color: #fefefe;
+            width: 580px;
+            margin: 0 auto;
+        }
+        .bottom {
+            background-color: #efefee;
+        }
+        .block {
+            margin: 0;
+            padding: 10px 20px 20px 20px;
+        }
+        .logo {
+            width: 100%;
+        }
+        .text-center {
+            text-align: center;
+        }
+        .btn {
+            display: inline-block;
+            padding: 10px 20px;
+            background-color: #264459;
+            color: #fefefe;
+            border: 1px solid #fff;
+            border-radius: 3px;
+            font-size: 20px;
+            font-weight: bold;
+            text-decoration: none;
+        }
+    </style>
+</head>
+<body>
+<div class="body">
+    <div class="container">
+        <div class="header text-center">
+            <a href="{{ url('moncompte') }}">
+                <img src="{{ absolute_url(asset('./fichiers/logo.png')) }}" class="logo" alt="SpaceBar Logo">
+            </a>
+        </div>
+
+        <div class="content">
+            <h1 class="text-center">Confirmation de votre inscription Waloudé </h1>
+            <p class="block">
+                Bonjour,<br/>
+
+
+Vous avez effectué une inscription  sur notre site Internet de:<br/>
+
+    contrat d’assurance waloudé pour un cotisation annuel.<br/>
+</p>
+<p class="block">
+Votre inscription  est actuellement en cours de validation. Vous serez prochainement tenu informé de la validation de votre dossier.
+</p>
+
+<p class="block">
+Vous pouvez  à tout moment  suivre l'avancement de votre  contrat  sur
+votre Espace Abonné accessible à l'adresse suivante:
+    <a href="http://waloude.org">www.waloude.org </a>
+</p>
+
+<p class="block">
+dans le cas des pièces manquants, vous recevrez un mail de la liste des documents à fournir et éventuellement vous envoyé une autorisation de prélèvement si vous avez choisir comme mode de payement : prélèvement automatique.
+
+<p class="block">
+Nous attirons votre attention sur la nécessité, de vérifier votre contrat. En cas de problème , vous devez  nous adresser un mail  pour effectuer une réclamation.
+</p>
+
+<p class="block">
+Vous pouvez consulter à tout moment les Conditions Générales du contrat  sur votre Espace Abonné. <br/>Nous vous invitons à les imprimer ou télécharger et à les conserver.
+</p>
+
+<p class="block">
+Nous restons à votre  disposition pour toute information complémentaire
+et vous prions de recevoir nos sincères salutations.
+</p>
+
+L'équipe Waloude <br/>
+
+<p>----------------------------------------------------------------------------------------------------------------------------------</p>
+
+        </div>
+
+    <div class="footer">
+    <p class="block">
+Vous disposez d'un délai de 14 jours à compter de la réception du contrat , pour renoncer à votre souscription d’assurance waloudé. Pour plus d'informations sur le droit de rétractation, consulter les conditions Générales du contrat waloudé.
+
+<p class="block">
+Vous recevez cet email car vous avez souscrit aux services Waloude.
+Pour plus d'informations concernant la gestion de vos données à caractère personnel, veuillez consulter la Politique de confidentialité des données de waloude.
+</p>
+
+            <p class="block bottom text-center">
+Waloude - Association mutuelle prévoyance décès – RDC- W913012910 Siège social : 7 allée des monégasques 91300 MASSY
+ </p>
+        </div>
+
+    </div>
+</div>
+</body>
+</html>

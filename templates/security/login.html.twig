@@ -1,0 +1,103 @@
+
+	{% extends 'base.html.twig' %}
+
+    {% block title %}Connexion - Waloude{% endblock %}
+
+    {% block body %}
+    <section class="section-form" style="background-image: url(../fichiers/img2.jpg) !important;">
+		<div class="container">
+			<div class="columns is-vbottom">
+				<div class="column is-6 column-texte"><!--<p><span style='font-weight:500'>Aésio Prévoyance Décès</span><br><span style='font-weight:900'>Nous sommes le lien qui assurera l'avenir de vos proches</span></p><span class='arrow-texte icon-arrow-texte'></span>--></div>
+				<div class="column is-6 column-form">
+				
+					<!--div class="form_body_message has-text-centered">
+						Nous vous remercions.<br> Votre demande a bien été prise en compte, un conseiller va vous recontacter dans les plus brefs délais.
+					</div-->
+
+					<div class="form_body">
+						<div class="titre_form">
+							<h1 style="font-size:29px;color:#5271ff;font-weight: 700;line-height:1em; margin-bottom: 20px;">Connexion à votre compte Waloude</h1>
+							<!-- <h2 style="font-size:19px;margin:10px 0px"><strong>Votre étude personnalisée</strong>, c'est simple et rapide !</h2> -->
+						</div>
+
+		<form id="form" method="POST" action="{{ path('app_login')}}">
+
+		{% if error %}
+        <div >{{ error.messageKey|trans(error.messageData, 'security') }}</div>
+    {% endif %}
+
+        <div class="columns is-gapless is-multiline">
+
+
+      {# Email -debut. #}
+					<div class="box_field column is-12 columns is-gapless">
+
+									<div class="column field-label is-narrow"><label class="label">Email *</label></div>
+								
+				<div class="column field-input">
+
+											 <input id="email" name="email" value="{{ last_username }}" class="input requis" type="email">
+					
+				</div>
+
+			</div>
+          {# Email -fin. #}
+
+           {# Pasword -debut. #}
+					<div class="box_field column is-12 columns is-gapless">
+
+									<div class="column field-label is-narrow"><label class="label">Mot de passe *</label></div>
+								
+				<div class="column field-input">
+
+											<input id="password" name="password" value="" class="input requis" type="password">
+					
+				</div>
+
+			</div>
+          {# Password -fin. #}
+
+		  <input type="hidden" name="_csrf_token" value="{{ csrf_token('authenticate') }}">
+
+ 							<div class="box_field column is-12 marge_check columns is-gapless">
+
+								
+				<div class="column field-input">
+
+											<input id="remember_me" class="is-checkradio is-small" type="checkbox" name="_remember_me">
+						<label for="remember_me" class="no_label mention">Se souvenir de moi</label>
+					
+				</div>
+
+			</div>
+					<div class="box_field column is-12 columns is-gapless">
+
+								
+				<div class="column field-input">
+
+											<div class="column has-text-centered container_bouton">
+							<button class="button " style="background:#5271ff;" type="submit"><span class="text">Je me connecte</span><span class="icon is-small"><i class="fas fa-arrow-right"></i></span>
+							</button>
+						</div>
+					
+				</div>
+
+			</div>
+
+
+			</div>
+</form>
+						<div class="field champ_obligatoire has-text-centered">* Champs obligatoires</div>
+
+						<div class=" has-text-centered">
+						<a  href="{{ path('demandeMotDePasse') }}">Demandez un nouveau mot de passe</a>
+						</div>
+						<div class="souscrire has-text-centered"><a href="{{ path('user_registration') }}">Inscription</a></div>
+
+					</div>
+				</div>
+			</div>
+		</div>
+	</section>
+
+{% endblock %}

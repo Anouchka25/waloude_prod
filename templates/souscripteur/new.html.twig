@@ -1,0 +1,268 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Souscrire au contrat Waloude{% endblock %}
+
+{% block body %}
+
+<link rel="stylesheet" href="{{ asset('./fichiers/bulma.min.css') }}" />
+<link rel="stylesheet" href="{{ asset('./fichiers/bulma-steps.min.css') }}">
+{#<link rel="stylesheet" href="{{ asset('./fichiers/bulma-steps.min.css') }}">#}
+
+<script>
+//Ajout d'un bénéficiaires
+function addBeneficiaires(collectionHolder)
+{
+    let prototype = collectionHolder.attr("data-prototype");
+    let index = collectionHolder.data("index");
+
+    let newForm = prototype.replace(/_name_/g, index+1);
+    collectionHolder.append(newForm);
+}
+
+
+function removeBeneficiaire(elt){
+    //$("#main-content #bt_calculer_montant").click();
+    let formParent = $(elt).closest("form");
+    let collectionHolder = formParent.find("#block_beneficiaires");
+    let index = collectionHolder.data("index");
+    collectionHolder.data("index", index-1);
+    $(elt).closest("tr").remove();
+    //expeditionIntexCalculerMontant(formParent, formParent.attr("type-client"));
+}
+
+//Ajout d'un enfant
+function addEnfants(collectionHolder)
+{
+//let block_colis = $("#block_colis");
+    let prototype = collectionHolder.attr("data-prototype");
+    let index = collectionHolder.data("index");
+
+    let newForm = prototype.replace(/__name__/g, index+1);
+    /*let newColisElt = colisFormElt.replace(/__nb__/g, index+1);
+    newColisElt = newColisElt.replace(/__formContent__/g, newForm);*/
+    collectionHolder.append(newForm);
+    //collectionHolder.find(".onlyNumbers").onlyNumbers();
+    /*collectionHolder.find(".onlyNumbers").numeric({
+        allowMinus   : false,
+    });
+    collectionHolder.find(".btn_colis_remove").off("click");
+    collectionHolder.find(".btn_colis_remove").on("click", function(){
+        removeColisForm($(this));
+    });
+    collectionHolder.data("index", index+1);
+    formTabIndexInit();*/
+}
+
+
+function removeEnfant(elt){
+    //$("#main-content #bt_calculer_montant").click();
+    let formParent = $(elt).closest("form");
+    let collectionHolder = formParent.find("#block_enfants");
+    let index = collectionHolder.data("index");
+    collectionHolder.data("index", index-1);
+    $(elt).closest("tr").remove();
+    //expeditionIntexCalculerMontant(formParent, formParent.attr("type-client"));
+}
+
+// Ajout du conjoint
+function addConjoint(collectionHolder)
+{
+//let block_colis = $("#block_colis");
+    let prototype = collectionHolder.attr("data-prototype");
+    let index = collectionHolder.data("index");
+
+    let newForm = prototype.replace(/__name__/g, index+1);
+
+    collectionHolder.append(newForm);
+}
+
+function afficherAdresse(id) {
+    var x = document.getElementById(id);
+    if (x.style.display === 'none') {
+        x.style.display = 'block';
+    } else {
+        x.style.display = 'none';
+    }
+}
+
+      function removeConjoint(elt){
+    //$("#main-content #bt_calculer_montant").click();
+    let formParent = $(elt).closest("form");
+    let collectionHolder = formParent.find("souscripteur[situationfamiliale]");
+    let index = collectionHolder.data("index");
+    collectionHolder.data("index", index-1);
+    $(elt).closest("tr").remove();
+    //expeditionIntexCalculerMontant(formParent, formParent.attr("type-client"));
+}
+
+      $(document).ready(function(){
+           // alert("test");
+            /*$(document).on("change", "#souscripteur_nombre_enfants", function(){
+                  alert("nombre enfants = "+$(this).val());
+            });*/
+             $("#souscripteur_nombreenfants").on("change", function(){
+                  //alert("nombre enfants = "+$(this).val());
+                  let nombreenfants = $(this).val();
+                  let collectionHolder = $("#block_enfants");
+
+                  //Suppression des anciens enfants
+                  collectionHolder.empty();
+                  collectionHolder.data("index", 0);
+
+                  //Ajout des nouveaux enfants
+                  for(i=0;i<nombreenfants;i++){
+                        addEnfants(collectionHolder);
+                  }
+            });
+
+            $("#souscripteur_nombrebeneficiaires").on("change", function(){
+                  //alert("nombre enfants = "+$(this).val());
+                  let nombrebeneficiaires = $(this).val();
+                  let collectionHolder = $("#block_beneficiaires");
+
+                  //Suppression des anciens enfants
+                  collectionHolder.empty();
+                  collectionHolder.data("index", 0);
+
+                  //Ajout des nouveaux enfants
+                  for(i=0;i<nombrebeneficiaires;i++){
+                        addBeneficiaires(collectionHolder);
+                  }
+            });
+
+            $("*input[name='souscripteur[situationfamiliale]']").on("change", function(){
+
+                  let conjoint = $(this).val();
+                  console.log(conjoint);
+                  /*let collectionHolder = $("#block_conjoint");
+
+
+                  //Suppression des ancienne situation
+                  collectionHolder.empty();
+                  collectionHolder.data("index", 0);*/
+
+                  //Ajout de conjoint ou pas 
+                  //if(conjoint=="Marié(e)" || conjoint =="Pacsé(e)" || conjoint =="Concubin(e)" ){
+                  if(conjoint=="marie" || conjoint =="pasce" || conjoint =="concubin" ){
+                        //addConjoint(collectionHolder);
+                        //Afficher le formulaire conjoint
+                        $("#block_conjoint").show();
+                  }
+                  else{
+                    //Cacher le formulaire conjoint
+                    console.log("Pas de conjoint");
+                    $("#block_conjoint").hide();
+                  }
+                        
+            });
+      });
+
+
+</script>
+
+<script>
+$("#souscripteur_datenaissance").datepicker({
+	dateFormat: "dd/mm/yy"	
+});
+</script>
+
+
+
+
+
+<div class="section-form box">
+
+<h1 style="font-size:29px;color:#5271ff;font-weight: 700;line-height:1em; margin-bottom: 20px;">
+                        Souscrire à l'assurance
+</h1>
+
+{{ form_start(form, {'id':'formSouscripteur'}) }}
+{# <script src="./steps/jquery-validate-min.js"></script> #}
+{#<script>bulmaSteps.attach();</script>	#}
+
+
+<div class="steps" id="stepsDemo">
+{% include 'souscripteur/steps.html.twig' %}
+
+<div class="steps-content">
+
+{# Etape 1 #}
+
+<div class="step-content has-text-centered is-active">
+<div class="box" style="color:red">
+Parcourez le formulaire en cliquant sur "Continuer" pour identifier tous les documents et informations nécéssaires à la validation du contrat.
+</div>
+<div class="columns">
+{% include 'souscripteur/stepsElements/civilite.html.twig' %}
+
+{% include 'souscripteur/stepsElements/nomPrenom.html.twig' %}
+   </div>
+
+<div class="columns">
+{% include 'souscripteur/stepsElements/paysNaissance.html.twig' %}
+
+{% include 'souscripteur/stepsElements/paysResidence.html.twig' %}
+</div>
+{# {% include 'souscripteur/stepsElements/profession.html.twig' %} #}
+  <div class="columns">
+{% include 'souscripteur/stepsElements/adresse.html.twig' %}
+</div>
+
+ <div class="columns">
+{% include 'souscripteur/stepsElements/telephone.html.twig' %}
+</div>
+
+<div style="text-align:center">Pour valider le formulaire, tous les champs marqués par<span style="color:red"> *<span> doivent être remplis
+</div>
+</div>
+
+{# Etape 2 #}
+<div class="step-content has-text-centered">
+{% include 'souscripteur/stepsElements/enfants.html.twig' %}
+</div>
+
+{# Etape 3 #}
+<div class="step-content has-text-centered">
+{% include 'souscripteur/stepsElements/beneficiaires.html.twig' %}
+</div>
+
+{# Etape 4 #}
+<div class="step-content has-text-centered">
+{% include 'souscripteur/stepsElements/famille.html.twig' %}
+</div>
+
+{# Etape 5 #}
+<div class="step-content has-text-centered">
+{% include 'souscripteur/stepsElements/documents.html.twig' %}
+<div style="text-align:center">Pour valider le formulaire, tous les champs marqués par<span style="color:red"> *</span> doivent être remplis
+</div>
+</div>
+<br/><br/>
+<div class="columns">
+{% include 'souscripteur/previousNext.html.twig' %}
+</div>
+
+{# Etape 6 #}
+<div class="step-content">
+{% include 'souscripteur/stepsElements/cotisation.html.twig' %}
+<div style="text-align:center">
+Pour valider le formulaire, tous les champs marqués par<span style="color:red"> *</span> doivent être remplis
+</div>
+</div>
+
+</div>
+
+
+  
+
+</div>
+
+{# <script src="{{ asset('./fichiers/steps/jquery.validate.js') }}"></script> #}
+
+{{ form_end(form) }}
+  </div>
+<script src="{{ asset('./fichiers/bulma-steps.min.js') }}"></script>
+<script>bulmaSteps.attach();</script>	
+{% endblock %}
+
+

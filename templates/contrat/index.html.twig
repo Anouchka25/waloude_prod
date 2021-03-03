@@ -1,0 +1,35 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Contrat index{% endblock %}
+
+{% block body %}
+    <h1>Contrat index</h1>
+
+    <table class="table">
+        <thead>
+            <tr>
+                Contrat
+            </tr>
+        </thead>
+        <tbody>
+        {% for contrat in contrats %}
+            <tr>
+                <th>Titre</th>
+                <td>{{ contrat.titre }}</td>
+                <th>Description</th>
+                <td>{{ contrat.description }}</td>
+                {# <td>
+                    <a href="{{ path('contrat_show', {'id': contrat.id}) }}">show</a>
+                    <a href="{{ path('contrat_edit', {'id': contrat.id}) }}">edit</a>
+                </td> #}
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="4">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+   {#  <a href="{{ path('contrat_new') }}">Create new</a> #}
+{% endblock %}

@@ -1,0 +1,29 @@
+    <table class="table">
+        <thead>
+            <tr>
+                  <h1>Contrat</h1>
+            </tr>
+        </thead>
+        <tbody>
+        {% for contrat in contrats %}
+            <tr>
+                <td><h2>{{ contrat.titre }}<h2></td>
+            </tr>
+
+            <tr>
+                <td>
+                {{ contrat.description }} <br/><br/></td>
+                {# <td>
+                    <a href="{{ path('contrat_show', {'id': contrat.id}) }}">show</a>
+                    <a href="{{ path('contrat_edit', {'id': contrat.id}) }}">edit</a>
+                </td> #}
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="4">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+   {#  <a href="{{ path('contrat_new') }}">Create new</a> #}

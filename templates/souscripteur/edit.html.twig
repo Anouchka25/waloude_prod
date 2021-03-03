@@ -1,0 +1,13 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Modifier vos informations{% endblock %}
+
+{% block body %}
+    <h1 class="title">Modifier vos informations</h1>
+
+    {{ include('souscripteur/_formModifInfos.html.twig', {'button_label': 'Valider les modifications'}) }}
+
+    {# <a href="{{ path('souscripteur_index') }}">back to list</a>
+
+     {{ include('souscripteur/_delete_form.html.twig') }} #}
+{% endblock %}

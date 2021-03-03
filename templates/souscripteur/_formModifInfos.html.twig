@@ -1,0 +1,35 @@
+{{ form_start(form, {'id':'formSouscripteur'}) }}
+    
+    
+ <div class="step-content has-text-centered is-active">
+     {# <div class="column">
+          {{ form_row(form.nom) 
+            }}
+      </div>
+       <div class="column">
+          {{ form_row(form.prenom) 
+            }}
+      </div> #}
+       
+       <div class="column">
+              {{ form_row(form.profession) }}
+            </div>
+       <div class="colum">
+              {{ form_row(form.telephone) 
+            }}
+            </div>
+
+            <div class="column">
+              {{ form_row(form.teldomicile) 
+            }}
+            </div>
+
+    {% include 'souscripteur/stepsElements/adresse.html.twig' %}
+
+</div>
+<div class="column has-text-centered container_bouton">
+<button class="button " style="background:#5271ff; color: white">{{ button_label|default('Save') }}</button>
+</div>
+{{ form_end(form) }}
+
+

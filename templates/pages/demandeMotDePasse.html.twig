@@ -1,0 +1,22 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Demande de mot de passe{% endblock %}
+{% block body %}
+  <style>
+    p{font-size: 18px; color: black;}
+  </style>
+  <section style=" height:200px; background-image: url(../fichiers/waloude.png); background-repeat: no-repeat !important;">
+    <h1 style="padding-left:20px; padding-top:70px; font-size:29px; color:black; font-weight:bold;">Etre rappelé</h1>
+  </section>
+
+  {% include 'trait.html.twig' %}
+  <section >
+    <div class="columns">
+      <div class="column">
+        <p>Notre équipe se charge de vous envoyer très rapidement un nouveau mot de passe</p>
+
+      </div>
+    </div>
+  </section>
+
+{% endblock %}
