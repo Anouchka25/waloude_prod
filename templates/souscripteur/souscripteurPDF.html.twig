@@ -23,10 +23,13 @@
 <table>
 
 <tr>
-   <td><img src="C:\wamp64\www\waloude\public\fichiers\logo.png"></td>
-   <td>17 Rue de la République<br/>
-   75001 Paris<br/>
-   Tel: 01 00 00 00 00</td>
+   <td><img src="https://waloude.org/fichiers/logo.png"></td>
+   <td>Association Mutuelle Prévoyance Décès<br/>
+   7 allée des Monégasques<br/>
+   91300 Massy<br/>
+   Tel: +33 6 95 24 46 37<br/>
+   Email: contact@waloude.org<br/>
+   Site internet: www.waloude.org</td>
    </tr>
    
    <tr>
@@ -42,7 +45,7 @@
    <td>{{ souscripteur.civilite }}</td>
    </tr>
    <tr>
-   <td>Nom & Prénom</td>
+   <td>Nom et Prénom</td>
    <td>{{ souscripteur.nom }} {{ souscripteur.prenom }}</td>
    </tr>
    <tr>
@@ -115,9 +118,11 @@
 {% endif %}
    </td>
    </tr>
-   
+
    <tr>
-   {% include 'bloc-contrat.html.twig' %}
+   <td>Veuillez trouver ici le conditions du contrat :</td>
+   <td> <a  href="{{ path('contrat') }}">Condtions du contrat</a></td>
+   {# {% include 'souscripteur/bloc-contrat.html.twig' %}#}
    </tr>
 
   

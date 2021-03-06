@@ -4,7 +4,7 @@
 
 {% block body %}
 
-{% for souscripteur in souscript %}
+{% if souscripteur is defined %}
 
 <div class="box">
           <article class="media">
@@ -103,7 +103,7 @@
 
    {% else %}
 
-   <d class="container">
+   <div class="container">
    
    <div class="columns ">
      <div class="column is-full has-text-centered">
@@ -113,12 +113,12 @@
 
      <div class="columns">
      <div class="column is-full has-text-centered">
-    <h1 class="title"><a href="{{ path('souscripteur_new') }}"> Cliquez ici sans tarder pour vous inscrire </a></h1>
+        <h1 class="title"><a href="{{ path('souscripteur_new') }}"> Cliquez ici sans tarder pour vous inscrire </a></h1>
      </div>
      </div>
-<br/><br/>
+    <br/><br/>
      </div>
        
-    {% endfor %}
+    {% endif %}
     
 {% endblock %}

@@ -52,7 +52,7 @@ class SouscripteurController extends AbstractController
         ]);
        // if($userSouscripteur!==null) {
             return $this->render('souscripteur/moncompte.html.twig', [
-                'souscript' => $userSouscripteur,
+                'souscripteur' => $userSouscripteur,
             ]);
         //}else {
          //   return $this->redirectToRoute('souscripteur_new');
@@ -63,6 +63,13 @@ class SouscripteurController extends AbstractController
     /**
      * @Route("/new", name="souscripteur_new", methods={"GET","POST"})
      */
+    /*public function souscripteur(Request $request, 
+    FileUploader $fileUploader1, 
+    FileUploader $fileUploader2, 
+    FileUploader $fileUploader3, 
+    FileUploader $fileUploader4, 
+    FileUploader $fileUploader5, 
+    FileUploader $fileUploader6): Response*/
     public function souscripteur(Request $request, 
     FileUploader $fileUploader1, 
     FileUploader $fileUploader2, 
@@ -190,12 +197,11 @@ class SouscripteurController extends AbstractController
     /**
    * @Route("souscripteurpdf/{id}", name="souscripteurpdf", methods={"GET"})
      */
-    public function showPdf(Souscripteur $souscripteur, ContratRepository $contratRepository): Response
+    public function showPdf(Souscripteur $souscripteurPdf): Response
     {
 
         $template = $this->render('souscripteur/souscripteurPDF.html.twig', [
-            'souscripteur' => $souscripteur,
-            //'contrats' => $contratRepository->findAll()
+            'souscripteur' => $souscripteurPdf,
         ]);
 
       $html2pdf = new T_Html2Pdf('P', 'A4', 'fr', true, 'UTF-8', array(0, 0, 0, 0));

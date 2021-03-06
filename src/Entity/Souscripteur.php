@@ -166,7 +166,6 @@ class Souscripteur
      */
     protected $user;
     
-    
 
     public function __construct()
     {
@@ -228,6 +227,7 @@ class Souscripteur
 
         return $this;
     }
+    
 
     public function getDateNaissance(): ?\DateTimeInterface
     {
@@ -555,6 +555,18 @@ class Souscripteur
     public function setUser(User $user): self
     {
         $this->user = $user;
+
+        return $this;
+    }
+
+    public function getPublishedAt(): ?\DateTimeInterface
+    {
+        return $this->publishedAt;
+    }
+
+    public function setPublishedAt(\DateTimeInterface $publishedAt): self
+    {
+        $this->publishedAt = $publishedAt;
 
         return $this;
     }

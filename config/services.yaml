@@ -4,6 +4,9 @@
 # Put parameters here that don't need to change on each machine where the app is deployed
 # https://symfony.com/doc/current/best_practices/configuration.html#application-related-configuration
 parameters:
+     local: 'fr'
+     team_directory: '%kernel.project_dir%/public/uploads/team'
+     docs_directory: '%kernel.project_dir%/public/uploads/documents'
 
 services:
     # default configuration for services in *this* file
@@ -14,18 +17,35 @@ services:
     # makes classes in src/ available to be used as services
     # this creates a service per class whose id is the fully-qualified class name
     App\:
-        resource: '../src/'
-        exclude:
-            - '../src/DependencyInjection/'
-            - '../src/Entity/'
-            - '../src/Kernel.php'
-            - '../src/Tests/'
+        resource: '../src/*'
+        exclude: '../src/{DependencyInjection,Entity,Migrations,Tests,Kernel.php}'
 
     # controllers are imported separately to make sure services can be injected
     # as action arguments even if you don't extend any base controller class
     App\Controller\:
-        resource: '../src/Controller/'
+        resource: '../src/Controller'
         tags: ['controller.service_arguments']
 
     # add more service definitions when explicit configuration is needed
     # please note that last definitions always *replace* previous ones
+
+    App\Service\FileUploader:
+        arguments:
+            $targetDirectory: '%team_directory%'
+    
+    App\EventListener\PhotoTeamUploadListener:
+        tags:
+            - { name: doctrine.event_listener, event: prePersist }
+            - { name: doctrine.event_listener, event: preUpdate }
+
+    App\Service\DocsFileUploader:
+        arguments:
+            $targetDirectory: '%docs_directory%'
+    
+    App\EventListener\DocsUploadListener:
+        tags:
+            - { name: doctrine.event_listener, event: prePersist }
+            - { name: doctrine.event_listener, event: preUpdate }
+
+    #App\Service\T_Html2Pdf:
+    #    class:T_Html2Pdf
